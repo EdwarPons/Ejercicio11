@@ -2,11 +2,15 @@ function siempreTRUE() {
  return true;
 }
 
-const funcionAsincrona = new Promise((resolve, reject) => {
+// Yo la hice así ...
+const funcionAsincronaWithPromise = new Promise((resolve, reject) => {
  setTimeout(() => resolve("Hola, soy una promesa"), 5000);
 });
 
-funcionAsincrona.then((res) => console.log(res));
+// Así estaba en la solución .. no se cuál es mejor, calculo que esta...
+async function funcionAsincrona() {
+ return setTimeout(() => console.log("Hola, soy una promesa"), 5000);
+}
 
 function* indicesPares() {
  let id = 0;
@@ -15,6 +19,10 @@ function* indicesPares() {
 }
 
 const iPares = indicesPares();
+
+// Llamamos a las funciones asíncronas antes de las síncronas.
+funcionAsincrona();
+funcionAsincronaWithPromise.then((res) => console.log(res));
 
 console.log(siempreTRUE());
 while (true) {
